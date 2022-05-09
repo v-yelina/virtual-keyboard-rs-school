@@ -1,16 +1,16 @@
-import renderKeyboard from "./renderKeyboard";
+import renderKeyboard from './renderKeyboard';
 
 function toggleLang() {
-  if (localStorage.getItem("lang") === "en") {
-    localStorage.setItem("lang", "ru");
+  if (localStorage.getItem('lang') === 'en') {
+    localStorage.setItem('lang', 'ru');
   } else {
-    localStorage.setItem("lang", "en");
+    localStorage.setItem('lang', 'en');
   }
 }
 
 const changeLanguage = () => {
   toggleLang();
-  const main = document.querySelector(".main");
+  const main = document.querySelector('.main');
   main.remove();
   renderKeyboard();
 };
