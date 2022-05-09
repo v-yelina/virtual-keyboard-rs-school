@@ -1,4 +1,4 @@
-import changeLanguage from "./changeLanguage";
+import changeLanguage from './changeLanguage';
 
 let isCtrlOn = false;
 let isAltOn = false;
@@ -6,17 +6,15 @@ let isAltOn = false;
 export const onBackspaceClick = (textarea) => {
   const textfield = textarea;
   if (textarea.selectionStart !== textarea.selectionEnd) {
-    textfield.textContent =
-      textarea.textContent.slice(0, textarea.selectionStart) +
-      textarea.textContent.slice(textarea.selectionEnd);
+    textfield.textContent = textarea.textContent.slice(0, textarea.selectionStart)
+      + textarea.textContent.slice(textarea.selectionEnd);
   } else if (textarea.selectionStart) {
-    textfield.textContent =
-      textarea.textContent.slice(0, textarea.selectionStart - 1) +
-      textarea.textContent.slice(textarea.selectionStart);
+    textfield.textContent = textarea.textContent.slice(0, textarea.selectionStart - 1)
+      + textarea.textContent.slice(textarea.selectionStart);
   } else {
     textfield.textContent = textarea.textContent.slice(
       0,
-      textarea.textContent.length - 1
+      textarea.textContent.length - 1,
     );
   }
   const end = textarea.value.length;
@@ -29,23 +27,21 @@ export const onEnterClick = (textarea) => {
   if (textarea.selectionStart) {
     textfield.textContent = `${textarea.textContent.slice(
       0,
-      textarea.selectionStart
+      textarea.selectionStart,
     )}\n${textarea.textContent.slice(textarea.selectionStart)}`;
   } else {
-    textfield.textContent += "\n";
+    textfield.textContent += '\n';
   }
 };
 
 export const onDeleteClick = (textarea) => {
   const textfield = textarea;
   if (textarea.selectionStart !== textarea.selectionEnd) {
-    textfield.textContent =
-      textarea.textContent.slice(0, textarea.selectionStart) +
-      textarea.textContent.slice(textarea.selectionEnd);
+    textfield.textContent = textarea.textContent.slice(0, textarea.selectionStart)
+      + textarea.textContent.slice(textarea.selectionEnd);
   } else if (textarea.selectionStart) {
-    textfield.textContent =
-      textarea.textContent.slice(0, textarea.selectionStart) +
-      textarea.textContent.slice(textarea.selectionStart + 1);
+    textfield.textContent = textarea.textContent.slice(0, textarea.selectionStart)
+      + textarea.textContent.slice(textarea.selectionStart + 1);
   }
   const end = textarea.value.length;
   textarea.setSelectionRange(end, end);
@@ -57,15 +53,15 @@ export const onTabClick = (textarea) => {
   if (textarea.selectionStart !== textarea.selectionEnd) {
     textfield.textContent = `${textarea.textContent.slice(
       0,
-      textarea.selectionStart
+      textarea.selectionStart,
     )}  ${textarea.textContent.slice(textarea.selectionEnd)}`;
   } else if (textarea.selectionStart) {
     textfield.textContent = `${textarea.textContent.slice(
       0,
-      textarea.selectionStart
+      textarea.selectionStart,
     )}  ${textarea.textContent.slice(textarea.selectionStart + 1)}`;
   } else {
-    textfield.textContent += "   ";
+    textfield.textContent += '   ';
   }
   const end = textarea.value.length;
   textarea.setSelectionRange(end, end);
