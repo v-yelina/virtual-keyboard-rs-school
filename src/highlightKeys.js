@@ -1,28 +1,34 @@
 import {
   onAltClick,
   onAltRelease,
+  onTabClick,
   onCtrlClick,
   onCtrlRelease,
-} from './keyFunctions';
+} from "./keyFunctions";
 
 const highlightKeys = () => {
   const isCapsOn = false;
   const isShiftOn = false;
   window.addEventListener(
-    'keydown',
+    "keydown",
     function (event) {
       const pressedKey = this.document.querySelectorAll(
-        `.${event.code.toLowerCase()}`,
+        `.${event.code.toLowerCase()}`
       );
       pressedKey.forEach((item) => {
-        item.classList.add('active');
-        item.classList.add('animated-key');
+        item.classList.add("active");
+        item.classList.add("animated-key");
 
-        if (item.classList.contains('character')) {
+        if (item.classList.contains("tab")) {
+          const textarea = this.document.querySelector(".textarea");
           event.preventDefault();
-          const textarea = this.document.querySelector('.textarea');
+          onTabClick(textarea);
+        }
+        if (item.classList.contains("character")) {
+          event.preventDefault();
+          const textarea = this.document.querySelector(".textarea");
           let text;
-          const shiftText = item.querySelector('.shift').textContent;
+          const shiftText = item.querySelector(".shift").textContent;
           if (isCapsOn) {
             text = item.textContent[0].toUpperCase();
           } else {
@@ -39,31 +45,31 @@ const highlightKeys = () => {
           textarea.focus();
         }
       });
-      if (event.code === 'ControlLeft' || event.code === 'ControlRight') {
+      if (event.code === "ControlLeft" || event.code === "ControlRight") {
         onCtrlClick();
-      } else if (event.code === 'AltLeft' || event.code === 'AltRight') {
+      } else if (event.code === "AltLeft" || event.code === "AltRight") {
         onAltClick();
       }
     },
-    true,
+    true
   );
   window.addEventListener(
-    'keyup',
+    "keyup",
     function (event) {
       const pressedKey = this.document.querySelectorAll(
-        `.${event.code.toLowerCase()}`,
+        `.${event.code.toLowerCase()}`
       );
       pressedKey.forEach((item) => {
-        item.classList.remove('active');
-        item.classList.remove('animated-key');
+        item.classList.remove("active");
+        item.classList.remove("animated-key");
       });
-      if (event.code === 'ControlLeft' || event.code === 'ControlRight') {
+      if (event.code === "ControlLeft" || event.code === "ControlRight") {
         onCtrlRelease();
-      } else if (event.code === 'AltLeft' || event.code === 'AltRight') {
+      } else if (event.code === "AltLeft" || event.code === "AltRight") {
         onAltRelease();
       }
     },
-    true,
+    true
   );
 };
 
