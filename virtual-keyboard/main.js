@@ -733,135 +733,139 @@
             ? localStorage.setItem("lang", "ru")
             : localStorage.setItem("lang", "en"),
             document.querySelector(".main").remove(),
-            g();
+            b();
         };
       let k = !1,
         m = !1;
-      const g = (e = !1) => {
-        let t, r, n;
-        localStorage.getItem("lang")
-          ? (t = localStorage.getItem("lang"))
-          : ((t = "en"), localStorage.setItem("lang", "en"));
-        const a = document.createElement("main");
-        a.classList.add("main");
-        const i = document.createElement("textarea");
-        i.classList.add("textarea"), (i.cols = "100");
-        const c = document.createElement("div");
-        c.classList.add("keyboard");
-        let s = "";
-        for (let a = 0; a < y.length; a += 1)
-          "en" === t
-            ? ((r = y[a].en), (n = y[a].enShift))
-            : ((r = y[a].ru), (n = y[a].ruShift)),
-            (s += `<div class='${y[a].classList}'>${
-              e ? n : r
-            }<div class='shift'>${n}</div></div>`);
-        (c.innerHTML = s),
-          a.appendChild(i),
-          a.appendChild(c),
-          document.body.appendChild(a);
-        const o = i.value.length;
-        i.setSelectionRange(o, o),
-          i.focus(),
-          (() => {
-            let e = !1,
-              t = !1;
-            const r = document.querySelectorAll(".character"),
-              n = document.querySelector(".textarea"),
-              a = document.querySelector(".backspace"),
-              i = document.querySelector(".enter"),
-              c = document.querySelector(".del"),
-              s = document.querySelector(".tab"),
-              o = document.querySelector(".caps"),
-              l = document.querySelectorAll(".shift");
-            for (let a = 0; a < r.length; a += 1)
-              r[a].addEventListener("click", () => {
-                let i;
-                const c = r[a].querySelector(".shift").textContent;
-                e
-                  ? (i = r[a].textContent[0].toUpperCase())
-                  : ([i] = r[a].textContent),
-                  (n.textContent += t ? c : i);
-                const s = n.value.length;
-                n.setSelectionRange(s, s), n.focus();
-              });
-            a.addEventListener("click", () => {
-              ((e) => {
-                const t = e;
-                e.selectionStart !== e.selectionEnd
-                  ? (t.textContent =
-                      e.textContent.slice(0, e.selectionStart) +
-                      e.textContent.slice(e.selectionEnd))
-                  : e.selectionStart
-                  ? (t.textContent =
-                      e.textContent.slice(0, e.selectionStart - 1) +
-                      e.textContent.slice(e.selectionStart))
-                  : (t.textContent = e.textContent.slice(
-                      0,
-                      e.textContent.length - 1
-                    ));
-                const r = e.value.length;
-                e.setSelectionRange(r, r), e.focus();
-              })(n);
-            }),
-              i.addEventListener("click", () => {
-                ((e) => {
-                  const t = e;
-                  e.selectionStart
-                    ? (t.textContent = `${e.textContent.slice(
-                        0,
-                        e.selectionStart
-                      )}\n${e.textContent.slice(e.selectionStart)}`)
-                    : (t.textContent += "\n");
-                })(n);
+      const g = (e) => {
+          const t = e;
+          e.selectionStart !== e.selectionEnd
+            ? (t.textContent =
+                e.textContent.slice(0, e.selectionStart) +
+                e.textContent.slice(e.selectionEnd))
+            : e.selectionStart
+            ? (t.textContent =
+                e.textContent.slice(0, e.selectionStart - 1) +
+                e.textContent.slice(e.selectionStart))
+            : (t.textContent = e.textContent.slice(
+                0,
+                e.textContent.length - 1
+              ));
+          const r = e.value.length;
+          e.setSelectionRange(r, r), e.focus();
+        },
+        L = (e) => {
+          const t = e;
+          e.selectionStart
+            ? (t.textContent = `${e.textContent.slice(
+                0,
+                e.selectionStart
+              )}\n${e.textContent.slice(e.selectionStart)}`)
+            : (t.textContent += "\n");
+        },
+        x = (e) => {
+          const t = e;
+          e.selectionStart !== e.selectionEnd
+            ? (t.textContent =
+                e.textContent.slice(0, e.selectionStart) +
+                e.textContent.slice(e.selectionEnd))
+            : e.selectionStart &&
+              (t.textContent =
+                e.textContent.slice(0, e.selectionStart) +
+                e.textContent.slice(e.selectionStart + 1));
+          const r = e.value.length;
+          e.setSelectionRange(r, r), e.focus();
+        },
+        v = (e) => {
+          const t = e;
+          e.selectionStart !== e.selectionEnd
+            ? (t.textContent = `${e.textContent.slice(
+                0,
+                e.selectionStart
+              )}  ${e.textContent.slice(e.selectionEnd)}`)
+            : e.selectionStart
+            ? (t.textContent = `${e.textContent.slice(
+                0,
+                e.selectionStart
+              )}  ${e.textContent.slice(e.selectionStart + 1)}`)
+            : (t.textContent += "   ");
+          const r = e.value.length;
+          e.setSelectionRange(r, r), e.focus();
+        },
+        b = (e = !1) => {
+          let t, r, n;
+          localStorage.getItem("lang")
+            ? (t = localStorage.getItem("lang"))
+            : ((t = "en"), localStorage.setItem("lang", "en"));
+          const a = document.createElement("main");
+          a.classList.add("main");
+          const i = document.createElement("textarea");
+          i.classList.add("textarea"), (i.cols = "100");
+          const c = document.createElement("div");
+          c.classList.add("keyboard");
+          let s = "";
+          for (let a = 0; a < y.length; a += 1)
+            "en" === t
+              ? ((r = y[a].en), (n = y[a].enShift))
+              : ((r = y[a].ru), (n = y[a].ruShift)),
+              (s += `<div class='${y[a].classList}'>${
+                e ? n : r
+              }<div class='shift'>${n}</div></div>`);
+          (c.innerHTML = s),
+            a.appendChild(i),
+            a.appendChild(c),
+            document.body.appendChild(a);
+          const o = i.value.length;
+          i.setSelectionRange(o, o),
+            i.focus(),
+            (() => {
+              let e = !1,
+                t = !1;
+              const r = document.querySelectorAll(".character"),
+                n = document.querySelector(".textarea"),
+                a = document.querySelector(".backspace"),
+                i = document.querySelector(".enter"),
+                c = document.querySelector(".del"),
+                s = document.querySelector(".tab"),
+                o = document.querySelector(".caps"),
+                l = document.querySelectorAll(".shift");
+              for (let a = 0; a < r.length; a += 1)
+                r[a].addEventListener("click", () => {
+                  let i;
+                  const c = r[a].querySelector(".shift").textContent;
+                  e
+                    ? (i = r[a].textContent[0].toUpperCase())
+                    : ([i] = r[a].textContent),
+                    (n.textContent += t ? c : i);
+                  const s = n.value.length;
+                  n.setSelectionRange(s, s), n.focus();
+                });
+              a.addEventListener("click", () => {
+                g(n);
               }),
-              c.addEventListener("click", () => {
-                ((e) => {
-                  const t = e;
-                  e.selectionStart !== e.selectionEnd
-                    ? (t.textContent =
-                        e.textContent.slice(0, e.selectionStart) +
-                        e.textContent.slice(e.selectionEnd))
-                    : e.selectionStart &&
-                      (t.textContent =
-                        e.textContent.slice(0, e.selectionStart) +
-                        e.textContent.slice(e.selectionStart + 1));
-                  const r = e.value.length;
-                  e.setSelectionRange(r, r), e.focus();
-                })(n);
-              }),
-              s.addEventListener("click", () => {
-                ((e) => {
-                  const t = e;
-                  e.selectionStart !== e.selectionEnd
-                    ? (t.textContent = `${e.textContent.slice(
-                        0,
-                        e.selectionStart
-                      )}  ${e.textContent.slice(e.selectionEnd)}`)
-                    : e.selectionStart
-                    ? (t.textContent = `${e.textContent.slice(
-                        0,
-                        e.selectionStart
-                      )}  ${e.textContent.slice(e.selectionStart + 1)}`)
-                    : (t.textContent += "   ");
-                  const r = e.value.length;
-                  e.setSelectionRange(r, r), e.focus();
-                })(n);
-              }),
-              o.addEventListener("click", () => {
-                e = !e;
-              }),
-              l.forEach((e) =>
-                e.addEventListener("click", () => {
-                  t = !t;
-                })
-              ),
-              document
-                .querySelector(".lang-change")
-                .addEventListener("click", p);
-          })();
-      };
-      g(),
+                i.addEventListener("click", () => {
+                  L(n);
+                }),
+                c.addEventListener("click", () => {
+                  x(n);
+                }),
+                s.addEventListener("click", () => {
+                  v(n);
+                }),
+                o.addEventListener("click", () => {
+                  e = !e;
+                }),
+                l.forEach((e) =>
+                  e.addEventListener("click", () => {
+                    t = !t;
+                  })
+                ),
+                document
+                  .querySelector(".lang-change")
+                  .addEventListener("click", p);
+            })();
+        };
+      b(),
         (() => {
           const e = document.createElement("footer");
           e.classList.add("footer");
@@ -876,48 +880,62 @@
             e.appendChild(r),
             document.body.appendChild(e);
         })(),
-        window.addEventListener(
-          "keydown",
-          function (e) {
-            this.document
-              .querySelectorAll(`.${e.code.toLowerCase()}`)
-              .forEach((t) => {
-                if (
-                  (t.classList.add("active"),
-                  t.classList.add("animated-key"),
-                  t.classList.contains("character"))
-                ) {
-                  e.preventDefault();
-                  const r = this.document.querySelector(".textarea");
-                  let n;
-                  t.querySelector(".shift").textContent,
-                    ([n] = t.textContent),
-                    (r.textContent += n);
-                  const a = r.value.length;
-                  r.setSelectionRange(a, a), r.focus();
-                }
-              }),
-              "ControlLeft" === e.code || "ControlRight" === e.code
-                ? ((k = !0), k && m && p())
-                : ("AltLeft" !== e.code && "AltRight" !== e.code) ||
-                  ((m = !0), k && m && p());
-          },
-          !0
-        ),
-        window.addEventListener(
-          "keyup",
-          function (e) {
-            this.document
-              .querySelectorAll(`.${e.code.toLowerCase()}`)
-              .forEach((e) => {
-                e.classList.remove("active"),
-                  e.classList.remove("animated-key");
-              }),
-              "ControlLeft" === e.code || "ControlRight" === e.code
-                ? (k = !1)
-                : ("AltLeft" !== e.code && "AltRight" !== e.code) || (m = !1);
-          },
-          !0
-        );
+        (() => {
+          let e = !1,
+            t = !1;
+          window.addEventListener(
+            "keydown",
+            function (r) {
+              this.document
+                .querySelectorAll(`.${r.code.toLowerCase()}`)
+                .forEach((n) => {
+                  n.classList.add("active"),
+                    n.classList.add("animated-key"),
+                    n.classList.contains("caps") && (e = !e),
+                    n.classList.contains("shift") && (t = !t);
+                  const a = this.document.querySelector(".textarea");
+                  if (
+                    (n.classList.contains("tab") && (r.preventDefault(), v(a)),
+                    n.classList.contains("backspace") &&
+                      (r.preventDefault(), g(a)),
+                    n.classList.contains("enter") && (r.preventDefault(), L(a)),
+                    n.classList.contains("del") && (r.preventDefault(), x(a)),
+                    n.classList.contains("character"))
+                  ) {
+                    let i;
+                    r.preventDefault();
+                    const c = n.querySelector(".shift").textContent;
+                    e
+                      ? (i = n.textContent[0].toUpperCase())
+                      : ([i] = n.textContent),
+                      (a.textContent += t ? c : i);
+                    const s = a.value.length;
+                    a.setSelectionRange(s, s), a.focus();
+                  }
+                }),
+                "ControlLeft" === r.code || "ControlRight" === r.code
+                  ? ((k = !0), k && m && p())
+                  : ("AltLeft" !== r.code && "AltRight" !== r.code) ||
+                    ((m = !0), k && m && p());
+            },
+            !0
+          ),
+            window.addEventListener(
+              "keyup",
+              function (e) {
+                this.document
+                  .querySelectorAll(`.${e.code.toLowerCase()}`)
+                  .forEach((e) => {
+                    e.classList.remove("active"),
+                      e.classList.remove("animated-key");
+                  }),
+                  "ControlLeft" === e.code || "ControlRight" === e.code
+                    ? (k = !1)
+                    : ("AltLeft" !== e.code && "AltRight" !== e.code) ||
+                      (m = !1);
+              },
+              !0
+            );
+        })();
     })();
 })();
