@@ -1,4 +1,7 @@
 import {
+  onBackspaceClick,
+  onDeleteClick,
+  onEnterClick,
   onAltClick,
   onAltRelease,
   onTabClick,
@@ -7,8 +10,8 @@ import {
 } from "./keyFunctions";
 
 const highlightKeys = () => {
-  const isCapsOn = false;
-  const isShiftOn = false;
+  let isCapsOn = false;
+  let isShiftOn = false;
   window.addEventListener(
     "keydown",
     function (event) {
@@ -19,14 +22,45 @@ const highlightKeys = () => {
         item.classList.add("active");
         item.classList.add("animated-key");
 
+        if (item.classList.contains("caps")) {
+          if (isCapsOn) {
+            isCapsOn = false;
+          } else {
+            isCapsOn = true;
+          }
+        }
+        if (item.classList.contains("shift")) {
+          if (isShiftOn) {
+            isShiftOn = false;
+          } else {
+            isShiftOn = true;
+          }
+        }
+
+        const textarea = this.document.querySelector(".textarea");
+
         if (item.classList.contains("tab")) {
-          const textarea = this.document.querySelector(".textarea");
           event.preventDefault();
           onTabClick(textarea);
         }
+
+        if (item.classList.contains("backspace")) {
+          event.preventDefault();
+          onBackspaceClick(textarea);
+        }
+
+        if (item.classList.contains("enter")) {
+          event.preventDefault();
+          onEnterClick(textarea);
+        }
+
+        if (item.classList.contains("del")) {
+          event.preventDefault();
+          onDeleteClick(textarea);
+        }
+
         if (item.classList.contains("character")) {
           event.preventDefault();
-          const textarea = this.document.querySelector(".textarea");
           let text;
           const shiftText = item.querySelector(".shift").textContent;
           if (isCapsOn) {
