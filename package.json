@@ -1,0 +1,1 @@
+{"scripts":{"build":"webpack --mode production","lint":"eslint src/ --fix"},"devDependencies":{"css-loader":"^6.7.1","eslint":"^8.14.0","eslint-config-airbnb-base":"^15.0.0","eslint-plugin-import":"^2.26.0","img-loader":"^4.0.0","sass":"^1.51.0","sass-loader":"^12.6.0","style-loader":"^3.3.1","svg-inline-loader":"^0.8.2","webpack":"^5.72.0","webpack-cli":"^4.9.2"}}
