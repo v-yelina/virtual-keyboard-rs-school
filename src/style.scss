@@ -1,0 +1,129 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    height: 95vh;
+    background-color: #C6C5B9;
+}
+
+.main {
+    position: fixed;
+    bottom: 20px;
+    left: 3%;
+    width: 94%;
+    margin: 0 auto;
+}
+
+.textarea {
+    resize: none;
+    margin-bottom: 25px;
+    min-width: 100%;
+    max-width: 100%;
+    height: 6em;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.5rem;
+}
+
+.keyboard {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(14, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 10px;
+    max-width: 100%;
+    background-color: #7B7A65;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.key {
+    position: relative;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #546A7B;
+    font-size: 1.5rem;
+    color: #eeeeee;
+
+    &:active {
+        background-color: #1b8de5b8;
+        animation-name: animate-key-press;
+        animation-duration: 200ms;
+    }
+
+    &:hover {
+        cursor: pointer;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    }
+
+    .shift {
+        display: none;
+    }
+}
+
+.animated-key {
+    background-color: #1b8de5b8;
+    animation-name: animate-key-press;
+    animation-duration: 200ms;
+}
+
+
+@keyframes animate-key-press {
+    0% {
+        top: 0px;
+    }
+
+    25% {
+        top: 1px;
+    }
+
+    50% {
+        top: 2px;
+    }
+
+    100% {
+        top: 0px;
+    }
+}
+
+.number {
+    .shift {
+        display: block;
+        position: absolute;
+        font-size: 1rem;
+        top: 5px;
+        left: 10px;
+    }
+}
+
+.character {
+    background-color: #62929E;
+}
+
+.spacebar {
+    grid-column: 4/9;
+}
+
+.enter {
+    grid-column: 14/15;
+    grid-row: 2/4;
+}
+
+.right-shift {
+    grid-column: 13/15;
+    grid-row: 4/5;
+}
+
+.active {
+    background-color: #1b8de5b8;;
+}
+
+.footer {
+    padding: 10px;
+    text-align: center;
+    font-size: 1.5rem;
+    z-index: -1;
+}
